@@ -1,1 +1,4 @@
 *.pcd
+*.ply
+*.stl
+*.xyz
