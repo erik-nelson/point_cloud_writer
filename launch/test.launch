@@ -1,0 +1,10 @@
+<launch>
+  <node name="point_cloud_writer"
+    pkg="point_cloud_writer"
+    type="point_cloud_writer_node"
+    output="screen">
+    <remap from="~point_cloud" to="input"/>
+    <param name="output_file" value="point_cloud.pcd"/>
+    <param name="output_path" value="$(find point_cloud_writer)/data"/>
+  </node>
+</launch>
