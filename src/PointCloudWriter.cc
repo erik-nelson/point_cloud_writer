@@ -37,7 +37,7 @@
 #include <point_cloud_writer/PointCloudWriter.h>
 #include <parameter_utils/ParameterUtils.h>
 
-#include <pcl/io/pcd_io.h>
+#include <pcl/io/ply_io.h>
 
 namespace pu = parameter_utils;
 
@@ -90,7 +90,8 @@ bool PointCloudWriter::Write(const PointCloud::ConstPtr& points) const {
 
   // Write the point cloud.
   const std::string filename = params_.output_path + "/" + params_.output_file;
-  pcl::io::savePCDFileASCII(filename, *points);
+  pcl::PLYWriter writer;
+  writer.write<pcl::PointXYZ>(filename, *points, false);
   ROS_INFO("%s: Saved point cloud with %lu points to file: %s.", name_.c_str(),
            points->size(), filename.c_str());
   return true;
